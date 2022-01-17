@@ -68,11 +68,11 @@ app.use(flash());
 //rutas
 app.use('/', router())
 
-console.log(process.env.DB_NAME)
-console.log(process.env.DB_HOST)
-console.log(process.env.DB_PORT)
-console.log(process.env.DB_PASS)
-console.log(process.env.DB_USER)
+console.log(process.env.BD_NAME)
+console.log(process.env.BD_HOST)
+console.log(process.env.BD_PORT)
+console.log(process.env.BD_PASS)
+console.log(process.env.BD_USER)
 
 
 //levantar servidor express
