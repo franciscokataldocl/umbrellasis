@@ -42,8 +42,8 @@ block contenido
                                     td $#{producto.precioVenta}
                                     td
                                         .table-image-circle
-                                            a(href=`/dashimages/productos/${producto.imagen}` data-fslightbox )
-                                                img(src=`/dashimages/productos/${producto.imagen}`, alt="") 
+                                            a(href=`${producto.imagen}` data-fslightbox )
+                                                img(src=`${producto.imagen}`, alt="") 
                                     td
                                         .table-button
                                             span(data-nombre=producto.nombre data-marca=producto.marca data-cantidad=producto.cantidad data-stock=producto.stock data-costo=producto.precioCosto data-venta=producto.precioVenta data-imagen=producto.imagen data-id=producto.id).btn.btn-yellow.open-editar.far.fa-edit

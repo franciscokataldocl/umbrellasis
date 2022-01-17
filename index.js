@@ -8,7 +8,7 @@ const expressValidator = require('express-validator')
 const session = require('express-session');
 const flash = require('connect-flash');
 
-require('dotenv').config({path:'variables.env'});
+require('dotenv').config({path:'variables_local.env'});
 
 
 //crear conexion a bbdd
@@ -47,6 +47,7 @@ app.set('views', path.join(__dirname, './views'));
 //habilitar subida de archivos
 //configuraciones fileupload
 app.use(fileupload({
+    useTempFiles : true,
     /* (2.) Definir que el límite para la carga de imágenes es de 5MB. */
     limits: { fileSize: 5000000},
     abortOnLimit: true,

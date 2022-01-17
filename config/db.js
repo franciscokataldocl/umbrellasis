@@ -1,13 +1,13 @@
 const { Sequelize } = require("sequelize");
 
-require('dotenv').config({path:'./variables.env'});
+require('dotenv').config({path:'./variables_local.env'});
 
+console.log(process.env.BD_NAME)
 
-
-const db = new Sequelize('kataldoc_umbrellasis', 'kataldoc_umbrellasis', 'LbG[CLDSFRr8', {
-    host: '192.154.227.209',
+const db = new Sequelize(process.env.BD_NAME, process.env.BD_USER, process.env.BD_PASS, {
+    host: process.env.DB_HOST,
     dialect: "mysql",
-    port: 3306,
+    port: process.env.DB_PORT,
     define:{
         timestamps:false
     },

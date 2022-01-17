@@ -2,6 +2,8 @@
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 
+const cloudinary = require('../helpers/imageUpload')
+
 
 
 
@@ -40,16 +42,19 @@ exports.nuevoGasto = async (req, res) =>{
     
 
     if(file){
-       //nombre imagen
-       dataGasto.imagen = `${uuidv4()}-${Date.now()}${file.imagen.name.split(' ').join('-')}`;
+        const result = await cloudinary.uploader.upload(req.files.imagen.tempFilePath, {
+            public_image:`${uuidv4()}-${Date.now()}${file.imagen.name.split(' ').join('-')}`,
+            width:800,
+            crop: 'fill'
+        });
+        console.log(result.url)
+        dataGasto.imagen = result.url;
        
    }
    try {
-        console.log(dataGasto)
-       //ruta de almacenamiento imagen
-       const savePath = path.join(__dirname, '../public/dashimages/gastos/');
+     
        await Gastos.create(dataGasto);
-       file.imagen.mv(`${savePath}${dataGasto.imagen}`)
+       
        res.redirect('back');
 
   } catch (error) {

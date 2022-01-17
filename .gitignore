@@ -1,3 +1,4 @@
-variables.env
+variables_remoto.env
+variables_local.env
 node_modules
 .DS_Store

@@ -4,7 +4,7 @@
   "description": "sistema ventas node",
   "main": "index.js",
   "scripts": {
-    "desarrollo":"concurrently \"npm run dev\" \"npm run watch\" ",
+    "desarrollo": "concurrently \"npm run dev\" \"npm run watch\" ",
     "start": "node ./index.js",
     "dev": "nodemon ./index.js",
     "watch": "webpack -w --mode development"
@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
+    "cloudinary": "^1.28.1",
     "concurrently": "^7.0.0",
     "connect-flash": "^0.1.1",
     "dotenv": "^14.1.0",

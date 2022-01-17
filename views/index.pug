@@ -48,8 +48,8 @@ block contenido
                                     td $#{producto.precioVenta}
                                     td
                                         .table-image-circle
-                                            a(href=`/dashimages/productos/${producto.imagen}` data-fslightbox )
-                                                img(src=`/dashimages/productos/${producto.imagen}`, alt="") 
+                                            a(href=`${producto.imagen}` data-fslightbox )
+                                                img(src=`${producto.imagen}`, alt="") 
         
     script(src="js/modal.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js")

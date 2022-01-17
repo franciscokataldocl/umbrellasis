@@ -1,6 +1,8 @@
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 
+const cloudinary = require('../helpers/imageUpload')
+
 
 
 
@@ -26,6 +28,8 @@ exports.products = async (req, res) => {
 //crear nuevo producto
 exports.nuevoProducto = async (req, res) => {
 
+console.log('filessss')
+ 
     const productos = await Products.findAll({
         order: [
             ['created_at', 'DESC']
@@ -37,16 +41,34 @@ exports.nuevoProducto = async (req, res) => {
     const dataProducto = req.body;
     dataProducto.imagen = '';
 
+
+
 if(file){
     //nombre imagen
-    dataProducto.imagen = `${uuidv4()}-${Date.now()}${file.imagen.name.split(' ').join('-')}`;
+    
+    
+    const result = await cloudinary.uploader.upload(req.files.imagen.tempFilePath, {
+        public_image:`${uuidv4()}-${Date.now()}${file.imagen.name.split(' ').join('-')}`,
+        width:400,
+        height:400,
+        crop: 'fill'
+    });
+    dataProducto.imagen = result.url;
+
+
     
 }
    try {
+
+    
+   
+   
+
+
         //ruta de almacenamiento imagen
-        const savePath = path.join(__dirname, '../public/dashimages/productos/');
+        //const savePath = path.join(__dirname, '../public/dashimages/productos/');
         await Products.create(dataProducto);
-        file.imagen.mv(`${savePath}${dataProducto.imagen}`)
+        //file.imagen.mv(`${savePath}${dataProducto.imagen}`)
         res.redirect('back');
 
    } catch (error) {
