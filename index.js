@@ -8,7 +8,7 @@ const expressValidator = require('express-validator')
 const session = require('express-session');
 const flash = require('connect-flash');
 
-require('dotenv').config({path:'variables_remoto.env'});
+require('dotenv').config({path:'variables.env'});
 
 
 //crear conexion a bbdd
