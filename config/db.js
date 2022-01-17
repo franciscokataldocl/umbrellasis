@@ -1,6 +1,6 @@
 const { Sequelize } = require("sequelize");
 
-require('dotenv').config({path:'./variables_local.env'});
+require('dotenv').config({path:'./variables_remoto.env'});
 
 console.log(process.env.BD_NAME)
 
