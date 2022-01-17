@@ -1,0 +1,93 @@
+extends layout
+
+block contenido
+    .contenido.animate__animated.animate__fadeInUp
+        .wrapper-contenido  
+            h1.title-contenido=nombrePagina
+            if error
+                ul.list-error
+                    i.fas.fa-times.error-message-close
+                    each err in error
+                        li=err.message
+            .content-buttons
+                button.btn.btn-green.open-modal Agregar venta
+            //- .content-filters
+            //-     form(action="")
+            //-         .select-container
+            //-             label(for="anio") Año
+            //-             select(name="anio")
+            //-                 option(value="2020") 2020
+            //-                 option(value="2021") 2021
+            //-                 option(value="2022") 2022
+
+            //-         .select-container
+            //-             label(for="mes") Mes
+            //-             select(name="mes")
+            //-                 option(value="enero") Enero
+            //-                 option(value="febrero") Febrero
+            //-                 option(value="marzo") Marzo    
+                        
+            //-         .select-container
+            //-             label(for="vendedor") Vendedor
+            //-             select(name="venderor")
+            //-                 option(value="javiera carrasco") javiera carrasco
+            //-                 option(value="benjamin carrasco") benjamin carrasco    
+
+            //-         button(type="submit" class="btn btn-green") Filtrar
+            
+            .table-container
+                table
+                    thead
+                        tr
+                            th PRODUCTO
+                            th CANT. VENDIDA
+                            th VALOR VENTA
+                            th FECHA VENTA
+                            th IMAGEN
+                    
+                    tbody
+                        if(ventas.length)
+                            each venta in ventas
+                                tr
+                                    td #{venta.nombre}
+                                    td #{venta.cantidad} unidades
+                                    td $#{venta.precioVenta}
+                                    td=venta.fechaVenta
+                                    td
+                                        .table-image-circle
+                                            a(href=`/dashimages/productos/${venta.imagen}` data-fslightbox )
+                                                img(src=`/dashimages/productos/${venta.imagen}`, alt="") 
+
+        .modal-outer
+            .modal-box
+                .close-modal.animate-2s
+                    i.fas.fa-times
+                h3 Agregar venta
+
+                form(action="/ventas" method="POST")
+                    .input-container
+                        label(for="nombre" class="datalist-modal") Nombre Producto
+                            input(name="nombre" list="nombre" autocomplete="off" class="modal-input")
+                            if(productos)
+                                datalist(id="nombre")
+                                    each producto in productos
+                                        option(value=producto.id + '-' + producto.nombre) #{producto.nombre}
+
+                    .input-container
+                        label(for="cantidadVendida") Cantidad vendida
+                        input(class="modal-input" type="number" name="cantidad" placeholder="ej: 1" min="1" autocomplete="off" )
+             
+                    .input-container
+                        label(for="fechaVenta") Fecha Venta
+                        input(id="datepicker" class="modal-input" type="text" name="fechaVenta" value="" placeholder="selecciona" autocomplete="off" )
+
+                    .modal-footer
+                        span(class="btn btn-grey btn-cancel") cerrar 
+                        input(class="btn btn-green" type="submit" value="Agregar")
+
+    script(src="js/modal.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js")
+    script(src="js/date-picker.js")
+    script(src="js/error-remove.js") 
+                 

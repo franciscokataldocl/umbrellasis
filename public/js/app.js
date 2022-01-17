@@ -1,0 +1,1 @@
+import eliminar from './modulos/eliminar-producto';

@@ -1,0 +1,149 @@
+extends layout
+
+block contenido
+    .contenido.animate__animated.animate__fadeInUp
+        .wrapper-contenido  
+            h1.title-contenido=nombrePagina
+            if error
+                ul.list-error
+                    i.fas.fa-times.error-message-close
+                    each err in error
+                        li=err.message
+            .content-buttons
+                button.btn.btn-green.open-modal Agregar Producto
+                form(class="search-form" action="")
+                    input(type="text" class="search-bar" name="proucto" placeholder="Buscar Producto")
+                    i.search-button.fas.fa-search
+
+            .table-container
+                table
+                    thead
+                        tr
+                            th PRODUCTO
+                            th MARCA
+                            th CANTIDAD
+                            th STOCK
+                            th PRECIO COSTO
+                            th PRECIO VENTA
+                            th IMÁGEN
+                            th ACCIÓN
+                    tbody
+                        if(productos.length)
+                            each producto in productos
+                                tr
+                                    td #{producto.nombre}
+                                    td #{producto.marca}
+                                    td #{producto.cantidad}
+                                    if(producto.stock > 5)
+                                        td #{producto.stock}
+                                    else
+                                        td.red-color #{producto.stock}
+                                    td $#{producto.precioCosto}
+                                    td $#{producto.precioVenta}
+                                    td
+                                        .table-image-circle
+                                            a(href=`/dashimages/productos/${producto.imagen}` data-fslightbox )
+                                                img(src=`/dashimages/productos/${producto.imagen}`, alt="") 
+                                    td
+                                        .table-button
+                                            span(data-nombre=producto.nombre data-marca=producto.marca data-cantidad=producto.cantidad data-stock=producto.stock data-costo=producto.precioCosto data-venta=producto.precioVenta data-imagen=producto.imagen data-id=producto.id).btn.btn-yellow.open-editar.far.fa-edit
+                                            span(data-id=producto.id data-nombre=producto.nombre).btn.btn-red.btn-eliminar.far.fa-trash-alt
+                                                
+                                           
+
+    .modal-outer
+        .modal-box
+            .close-modal.animate-2s
+                i.fas.fa-times
+            h3 Agregar producto
+
+            form(action="/productos" method="POST" enctype="multipart/form-data")
+                .input-container
+                    label(for="nombre") Nombre Producto
+                    input(class="modal-input" type="text" name="nombre" placeholder="ej: Máscara colágeno")
+
+                .input-container
+                    label(for="marca") Marca Producto
+                    input(class="modal-input" type="text" name="marca" placeholder="ej: Romantic Beauty")
+                
+                .input-container
+                    label(for="cantidad") Cantidad / Contenido
+                    input(class="modal-input" type="text" name="cantidad" placeholder="ej: 10ml")
+                
+                .input-container
+                    label(for="stock") Stock
+                    input(class="modal-input" type="number" name="stock" placeholder="ej: 2" min="0")
+                
+                .input-container
+                    label(for="precioCosto") Precio Costo
+                    input(class="modal-input" type="number" name="precioCosto" placeholder="ej: 3900" min="1")
+                
+                .input-container
+                    label(for="precioVenta") Precio Venta
+                    input(class="modal-input" type="number" name="precioVenta" placeholder="ej: 3900" min="1")
+                
+                .container-image
+                    .avatar-upload
+                        .avatar-edit
+                            input(id="imageUpload" type="file" name="imagen" accept=".png, .jpg, .jpeg" )
+                            label(for="imageUpload")
+                        .avatar-preview
+                            div(id="imagePreview" style="background-image: url(/images/no-image.jpg);")
+                .modal-footer
+                    span(class="btn btn-grey btn-cancel") cerrar
+                    input(class="btn btn-green" type="submit" value="Agregar")
+
+
+    .modal-outer.modal-editar-outer
+        .modal-box
+            .close-modal.close-modal-editar.animate-2s
+                i.fas.fa-times
+            h3 Editar producto
+
+            form(action="" method="POST" enctype="multipart/form-data" id="formEditar")
+                .input-container
+                    label(for="nombre") Nombre Producto
+                    input(id="inputNombre" class="modal-input" type="text" name="nombre" placeholder="ej: Máscara colágeno")
+
+                .input-container
+                    label(for="marca") Marca Producto
+                    input(id="inputMarca" class="modal-input" type="text" name="marca" placeholder="ej: Romantic Beauty")
+                
+                .input-container
+                    label(for="cantidad") Cantidad / Contenido
+                    input(id="inputCantidad" class="modal-input" type="text" name="cantidad" placeholder="ej: 10ml")
+                
+                .input-container
+                    label(for="stock") Stock
+                    input(id="inputStock" class="modal-input" type="number" name="stock" placeholder="ej: 2" min="0")
+                
+                .input-container
+                    label(for="precioCosto") Precio Costo
+                    input(id="inputCosto" class="modal-input" type="number" name="precioCosto" placeholder="ej: 3900" min="1")
+                
+                .input-container
+                    label(for="precioVenta") Precio Venta
+                    input(id="inputVenta" class="modal-input" type="number" name="precioVenta" placeholder="ej: 3900" min="1")
+                
+                .container-image
+                    .avatar-upload
+                        .avatar-edit
+                            input(id="imageUploadEditar" type="file" name="imagen" accept=".png, .jpg, .jpeg" )
+                            label(for="imageUploadEditar")
+                        .avatar-preview
+                            div(id="imgPreviewEditar" style="background-image: url(/images/no-image.jpg);")
+                
+                .modal-footer
+                    span(class="btn btn-grey btn-cancel-editar") Cerrar
+                    input(class="btn btn-green" type="submit" value="Actualizar")
+                
+
+                
+    script(src="js/modal.js")
+    script(src="js/modal-editar-producto.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+    script(src="js/image-upload.js")   
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.min.js") 
+    script(src="js/error-remove.js")
+
+

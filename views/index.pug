@@ -1,0 +1,58 @@
+extends layout
+
+block contenido
+    .contenido
+        .wrapper-contenido
+            h1.title-contenido.animate__animated.animate__fadeInUp=nombrePagina
+            .content-box
+
+                .article-box.animate__animated.animate__fadeInUp
+                    .icon-box
+                        img(src="https://emojitool.com/img/whatsapp/2.21.11.17/money-mouth-face-28.png", alt="")
+                    .col.title-box total vendido hasta hoy
+                    .col $ #{ventas}
+
+                .article-box.article-box-green.animate__animated.animate__fadeInUp
+                    .icon-box
+                        img(src="https://emojitool.com/img/whatsapp/2.21.11.17/money-mouth-face-28.png", alt="")
+                    .col.title-box#mesActual 
+                    .col $ #{ventasMes[0].total} 
+
+                .article-box.article-box-yellow.animate__animated.animate__fadeInUp
+                    .icon-box
+                        img(src="https://emojitool.com/img/whatsapp/2.21.11.17/money-mouth-face-28.png", alt="")
+                    .col.title-box total gastos hasta hoy
+                    .col $ #{gastosMes}
+
+        .wrapper-contenido.animate__animated.animate__fadeInUp
+            .subtitle-contenido Productos que se están acabando
+
+            .table-container.animate__animated.animate__fadeInUp
+                table
+                    thead
+                        tr
+                            th PRODUCTO
+                            th MARCA
+                            th STOCK
+                            th PRECIO COSTO
+                            th PRECIO VENTA
+                            th IMÁGEN
+                    tbody
+                        if(productos.length)
+                            each producto in productos
+                                tr
+                                    td #{producto.nombre}
+                                    td #{producto.marca}
+                                    td #{producto.stock}
+                                    td $#{producto.precioCosto}
+                                    td $#{producto.precioVenta}
+                                    td
+                                        .table-image-circle
+                                            a(href=`/dashimages/productos/${producto.imagen}` data-fslightbox )
+                                                img(src=`/dashimages/productos/${producto.imagen}`, alt="") 
+        
+    script(src="js/modal.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+    script(src="js/image-upload.js")   
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.min.js") 
+    script(src="js/mes-actual.js")   

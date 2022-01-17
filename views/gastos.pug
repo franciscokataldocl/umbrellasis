@@ -1,0 +1,104 @@
+extends layout
+
+block contenido
+    .contenido.animate__animated.animate__fadeInUp
+        .wrapper-contenido  
+            h1.title-contenido=nombrePagina
+            if error
+                ul.list-error
+                    i.fas.fa-times.error-message-close
+                    each err in error
+                        li=err.message
+            .content-buttons
+                button.btn.btn-green.open-modal Agregar Gasto
+            //- .content-filters
+            //-     form(action="")
+            //-         .select-container
+            //-             label(for="anio") Año
+            //-             select(name="anio")
+            //-                 option(value="2020") 2020
+            //-                 option(value="2021") 2021
+            //-                 option(value="2022") 2022
+
+            //-         .select-container
+            //-             label(for="mes") Mes
+            //-             select(name="mes")
+            //-                 option(value="enero") Enero
+            //-                 option(value="febrero") Febrero
+            //-                 option(value="marzo") Marzo    
+                        
+            //-         .select-container
+            //-             label(for="vendedor") Vendedor
+            //-             select(name="venderor")
+            //-                 option(value="javiera carrasco") javiera carrasco
+            //-                 option(value="benjamin carrasco") benjamin carrasco    
+
+            //-         button(type="submit" class="btn btn-green") Filtrar
+            
+            .table-container
+                table
+                    thead
+                        tr
+                            th NOMBRE GASTO
+                            th MONTO GASTO
+                            th FECHA GASTO
+                            th FECHA INGRESO
+                            th IMÁGEN
+                    
+                    tbody
+                        if(gastos.length)
+                                each gasto in gastos
+                                    tr
+                                        td #{gasto.nombre}
+                                        td $#{gasto.montoGasto}
+                                        td #{gasto.fechaGasto}
+                                        td #{gasto.created_at}
+                                        td 
+                                            .table-image-circle
+                                                a(href=`/dashimages/gastos/${gasto.imagen}` data-fslightbox )
+                                                    img(src=`/dashimages/gastos/${gasto.imagen}`, alt="") 
+
+
+
+
+    .modal-outer
+            .modal-box
+                .close-modal.animate-2s
+                    i.fas.fa-times
+                h3 Agregar gasto
+
+                form(action="/gastos" method="POST" enctype="multipart/form-data")
+                    .input-container
+                        label(for="nombre") Nombre Gasto
+                        input(class="modal-input" type="text" name="nombre" placeholder="ej: Pago Starken" autocomplete="off" )
+
+                    .input-container
+                        label(for="montogasto") Monto Gasto
+                        input(class="modal-input" type="number" name="montoGasto" placeholder="ej: 4500" min="1" autocomplete="off" )
+                    
+                    //- .input-container
+                    //-     label(for="vendedor") Vendedor
+                    //-     select(name="vendedor" class="select-modal")
+                    //-         option(value="javiera-carrasco") Javiera Carrasco
+                    .input-container
+                        label(for="fechagasto") Fecha Gasto
+                        input(id="datepicker" class="modal-input" type="text" name="fechaGasto" value="" placeholder="selecciona" autocomplete="off" )
+                    .container-image
+                        .avatar-upload
+                            .avatar-edit
+                                input(id="imageUpload" type="file" name="imagen" accept=".png, .jpg, .jpeg" )
+                                label(for="imageUpload")
+                            .avatar-preview
+                                div(id="imagePreview" style="background-image: url(/images/no-image.jpg);")
+
+                    .modal-footer
+                        span(class="btn btn-grey btn-cancel") cerrar
+                        input(class="btn btn-green" type="submit" value="Agregar")
+
+    script(src="js/modal.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js")
+    script(src="js/image-upload.js") 
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js")
+    script(src="js/date-picker.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.min.js") 
+    script(src="js/error-remove.js") 

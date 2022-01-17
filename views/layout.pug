@@ -1,0 +1,47 @@
+doctype html
+html(lang="es-CL")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="css/normalize.css")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
+        link(rel="stylesheet", href="css/app.css")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.theme.min.css")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css")
+        title=nombrePagina
+    body
+        .content
+            .navigation
+                .content-logo.animate__animated.animate__fadeInUp
+                    a(href="/")
+                        img(src="/images/logo.svg", alt="" class="logo") 
+                    .menu-wrapper
+                        .hamburger-menu
+                
+                .navigation-list
+                    ul.list-items.animate__animated.animate__fadeInUp
+                        li(class=(nombrePagina == "Inicio" ? "animate-2s active" : "animate-2s"))
+                            a(class="animate-2s" href="/")
+                                i(class="animate-2s fas fa-home")
+                                    span.animate-2s Inicio
+                        li(class=(nombrePagina == "Productos" ? "animate-2s active" : "animate-2s"))
+                            a(class="animate-2s" href="/productos")
+                                i(class="animate-2s fas fa-box-open") 
+                                    span.animate-2s Productos
+                        li(class=(nombrePagina == "Ventas" ? "animate-2s active" : "animate-2s"))
+                            a(class="animate-2s" href="/ventas")
+                                i(class="animate-2s fas fa-credit-card") 
+                                    span.animate-2s Ventas
+                        li(class=(nombrePagina == "Gastos" ? "animate-2s active" : "animate-2s"))
+                            a(class="animate-2s" href="/gastos")
+                                i(class="animate-2s fas fa-calculator") 
+                                    span.animate-2s Gastos
+                                
+            block contenido
+            script(src="/dist/bundle.js") 
+            script(src="js/hamburger-menu.js")
+            script(src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.min.js") 
+            
+
