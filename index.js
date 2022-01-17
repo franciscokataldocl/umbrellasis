@@ -25,6 +25,8 @@ const PORT = process.env.PORT || 3000
 const HOST = process.env.HOST || '0.0.0.0';
 
 
+
+
 //sincronizar modelos con la base de datos
 db.sync()
 .then(()=> console.log('conectado a la base de datos'))
