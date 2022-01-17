@@ -68,6 +68,13 @@ app.use(flash());
 //rutas
 app.use('/', router())
 
+console.log(process.env.DB_NAME)
+console.log(process.env.DB_HOST)
+console.log(process.env.DB_PORT)
+console.log(process.env.DB_PASS)
+console.log(process.env.DB_USER)
+
+
 //levantar servidor express
 app.listen(PORT, HOST, ()=> {
     console.log('el servidor esta funcionando')
