@@ -24,10 +24,16 @@ const app = express();
 const PORT = process.env.BD_PORT;
 const HOST = process.env.BD_HOST;
 
-console.log(process.env.BD_NAME)
+
+console.log('host')
 console.log(process.env.BD_HOST)
-console.log(process.env.BD_PORT)
+console.log('name')
+console.log(process.env.BD_NAME)
+console.log('pass')
 console.log(process.env.BD_PASS)
+console.log('port')
+console.log(process.env.BD_PORT)
+console.log('user')
 console.log(process.env.BD_USER)
 
 //sincronizar modelos con la base de datos
