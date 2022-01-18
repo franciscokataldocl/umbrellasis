@@ -24,6 +24,12 @@ const app = express();
 const PORT = process.env.BD_PORT;
 const HOST = process.env.BD_HOST || '0.0.0.0';
 
+console.log(process.env.BD_NAME)
+console.log(process.env.BD_HOST)
+console.log(process.env.BD_PORT)
+console.log(process.env.BD_PASS)
+console.log(process.env.BD_USER)
+
 //sincronizar modelos con la base de datos
 db.sync()
 .then(()=> console.log('conectado a la base de datos'))
@@ -65,11 +71,7 @@ app.use(flash());
 //rutas
 app.use('/', router())
 
-console.log(process.env.BD_NAME)
-console.log(process.env.BD_HOST)
-console.log(process.env.BD_PORT)
-console.log(process.env.BD_PASS)
-console.log(process.env.BD_USER)
+
 
 
 //levantar servidor express
