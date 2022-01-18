@@ -21,8 +21,8 @@ require('./models/Gastos.model');
 //crear app de express
 const app = express();
 
-const PORT = process.env.BD_PORT || 3000;
-const HOST = process.env.BD_HOST || '0.0.0.0';
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
 
 
 
