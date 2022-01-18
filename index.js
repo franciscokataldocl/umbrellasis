@@ -22,7 +22,7 @@ require('./models/Gastos.model');
 const app = express();
 
 const PORT = process.env.BD_PORT;
-const HOST = process.env.BD_HOST || '0.0.0.0';
+const HOST = process.env.BD_HOST;
 
 console.log(process.env.BD_NAME)
 console.log(process.env.BD_HOST)
