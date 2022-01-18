@@ -25,16 +25,6 @@ const PORT = process.env.BD_PORT || 3000;
 const HOST = process.env.BD_HOST || '0.0.0.0';
 
 
-console.log('host')
-console.log(process.env.BD_HOST)
-console.log('name')
-console.log(process.env.BD_NAME)
-console.log('pass')
-console.log(process.env.BD_PASS)
-console.log('port')
-console.log(process.env.BD_PORT)
-console.log('user')
-console.log(process.env.BD_USER)
 
 //sincronizar modelos con la base de datos
 db.sync()
