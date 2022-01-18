@@ -24,9 +24,6 @@ const app = express();
 const PORT = process.env.BD_PORT ;
 const HOST = process.env.BD_HOST || '0.0.0.0';
 
-
-
-
 //sincronizar modelos con la base de datos
 db.sync()
 .then(()=> console.log('conectado a la base de datos'))
