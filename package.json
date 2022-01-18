@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "sistema ventas node",
   "main": "index.js",
+  "engines": {
+    "node": "12.11.1"
+    },
   "scripts": {
     "desarrollo": "concurrently \"npm run dev\" \"npm run watch\" ",
     "start": "node index.js",
