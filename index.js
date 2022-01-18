@@ -21,7 +21,7 @@ require('./models/Gastos.model');
 //crear app de express
 const app = express();
 
-const PORT = process.env.BD_PORT || 3001 ;
+const PORT = process.env.BD_PORT;
 const HOST = process.env.BD_HOST || '0.0.0.0';
 
 //sincronizar modelos con la base de datos
