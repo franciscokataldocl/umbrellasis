@@ -11,7 +11,6 @@ const db = new Sequelize(process.env.BD_NAME, process.env.BD_USER, process.env.B
     define:{
         timestamps:false
     },
-    operatorAliases:false,
     pool:{
         max:5,
         min:0,
