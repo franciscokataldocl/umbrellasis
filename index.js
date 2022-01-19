@@ -6,7 +6,10 @@ const fileupload = require("express-fileupload");
 const fs = require('fs');
 const expressValidator = require('express-validator')
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
+
+const passport = require('./config/passport')
 
 require('dotenv').config({path:'/.env'});
 
@@ -18,6 +21,7 @@ const db = require('./config/db');
 require('./models/Products.model');
 require('./models/Ventas.model');
 require('./models/Gastos.model');
+require('./models/Usuarios.model');
 //crear app de express
 const app = express();
 
@@ -25,20 +29,7 @@ const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || '0.0.0.0';
 
 
-console.log('port')
-console.log(PORT)
-console.log('host')
-console.log(HOST)
-console.log('BD_NAME')
-console.log(process.env.BD_NAME)
-console.log('BD_USER')
-console.log(process.env.BD_USER)
-console.log('BD_HOST')
-console.log(process.env.BD_HOST)
-console.log('BD_PASS')
-console.log(process.env.BD_PASS)
-console.log('BD_PORT')
-console.log(process.env.BD_PORT)
+
 
 //sincronizar modelos con la base de datos
 db.sync()
@@ -75,13 +66,31 @@ app.use(bodyParser.urlencoded({extended:true}));
 //habilitar expressValidator
 app.use(expressValidator());
 
+
+
 app.use(flash());
+
+app.use(cookieParser());
+
+app.use(session({
+    secret: process.env.SECRET,
+    key: process.env.KEY,
+    resave:false,
+    saveUninitialized: false,
+}));
+
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 //rutas
 app.use('/', router())
 
-
+app.use((req,res,next) =>{
+    res.locals.mensajes = req.flash();
+})
 
 
 //levantar servidor express

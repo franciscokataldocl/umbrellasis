@@ -1,0 +1,32 @@
+doctype html
+html(lang="es-CL")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="css/normalize.css")
+        link(rel="stylesheet", href="css/app.css")
+
+        title=nombrePagina
+    body
+        .cuenta-container
+            .cuenta-col.image-cuenta
+                img(src="/images/logo.svg", alt="" class="logo-cuenta") 
+            .cuenta-col
+                .box-form-cuenta
+                    h1.title-cuenta Iniciar Sesión
+                        if errores
+                            each error in errores
+                                p.errorform=error
+                    form(action="/login" method="POST")
+                        .input-container
+                            label(for="Email") Email
+                            input(class="modal-input" type="email" name="email" placeholder="ej: valentin@gmail.com" value= email required)
+                        .input-container
+                            label(for="password") Password
+                            input(class="modal-input" type="password" name="password" value= password required)
+                        .buttons-form
+                            a(href="/crear-cuenta") crear una cuenta
+                            input(class="btn btn-green" type="submit" value="Ingresar")
+                    
+ 
