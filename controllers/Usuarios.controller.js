@@ -26,11 +26,12 @@ exports.crearCuenta =  async (req,res) =>{
 
     } catch (error) {
         //generar errores
-        //req.flash('error', error.errors.map(error => error.message))
+        req.flash('error', error.errors.map(error => error.message))
+
 
         res.render('crear-cuenta', {
             //pasar errores a la vista con flash (agregado a locals en el index)
-            //mensajes: req.flash(),
+            mensajes: req.flash(),
             nombrePagina: 'Crear cuenta',
             email,
             nombre,
