@@ -50,7 +50,7 @@ exports.nuevaVenta = async (req,res) =>{
 
 
     let {cantidad,fechaVenta} = req.body;
-
+    const usuarioId =res.locals.usuario.id
 
     try {
 
@@ -86,7 +86,7 @@ exports.nuevaVenta = async (req,res) =>{
         const fechaFormat = fechaVenta.split('/').join('-');
         fechaVenta = fechaFormat;
 
-        await Ventas.create({nombre, cantidad, imagen, precioVenta, fechaVenta, productoId});
+        await Ventas.create({nombre, cantidad, imagen, precioVenta, fechaVenta, productoId, usuarioId});
         Products.decrement('stock', { by: `${cantidad}`, where: { id: `${productoId}` }});
         
        

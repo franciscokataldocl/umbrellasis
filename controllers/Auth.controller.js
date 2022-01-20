@@ -21,3 +21,11 @@ exports.usuarioAutenticado = (req,res,next) =>{
     //caso contrario redirigir al login
     return res.redirect('/login');
 }
+
+
+//cerrar sesion
+exports.cerrarSesion = (req,res) =>{
+    req.session.destroy(()=>{
+        res.redirect('/login');
+    });
+}

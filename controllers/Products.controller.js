@@ -28,7 +28,7 @@ exports.products = async (req, res) => {
 //crear nuevo producto
 exports.nuevoProducto = async (req, res) => {
 
-console.log('filessss')
+
  
     const productos = await Products.findAll({
         order: [
@@ -40,6 +40,7 @@ console.log('filessss')
     const file = req.files;
     const dataProducto = req.body;
     dataProducto.imagen = '';
+    dataProducto.usuarioId =res.locals.usuario.id
 
 
 
@@ -50,21 +51,19 @@ if(file){
     const result = await cloudinary.uploader.upload(req.files.imagen.tempFilePath, {
         public_image:`${uuidv4()}-${Date.now()}${file.imagen.name.split(' ').join('-')}`,
         width:400,
-        height:400,
         crop: 'fill'
     });
-    dataProducto.imagen = result.url;
+    dataProducto.imagen = result.secure_url;
 
 
     
 }
    try {
+        
 
     
-   
-   
-
-
+        
+        
         //ruta de almacenamiento imagen
         //const savePath = path.join(__dirname, '../public/dashimages/productos/');
         await Products.create(dataProducto);
@@ -75,7 +74,7 @@ if(file){
        
     res.render('productos', {
                 error: error.errors,
-                nombrePagina: 'Productos',
+                nombrePagina: 'error',
                 productos
         
             })
@@ -94,15 +93,17 @@ exports.editarProducto = async (req, res) => {
             ['created_at', 'DESC']
         ]
     });
-    //console.log(req.params.id)
-    const producto = await Products.findOne({ where: { id: req.params.id } });
     const file = req.files;
+    const producto = await Products.findOne({ where: { id: req.params.id } });
+    
 
     if(file){
-        const imagen = `${uuidv4()}-${Date.now()}${file.imagen.name.split(' ').join('-')}`;
-        const savePath = path.join(__dirname, '../public/dashimages/productos/');
-        file.imagen.mv(`${savePath}${imagen}`)
-        producto.imagen = imagen;
+        const result = await cloudinary.uploader.upload(req.files.imagen.tempFilePath, {
+            public_image:`${uuidv4()}-${Date.now()}${file.imagen.name.split(' ').join('-')}`,
+            width:400,
+            crop: 'fill'
+        });
+        producto.imagen = result.secure_url;
         //producto.imagen = req.body.imagen
        
     }

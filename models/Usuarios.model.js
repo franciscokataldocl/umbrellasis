@@ -39,6 +39,10 @@ const Usuarios = db.define('usuarios', {
         validate:{
             notEmpty: {msg: 'El Password no puede estar vacío'}
         }
+    },
+    activo:{
+        type: Sequelize.INTEGER,
+        defaultValue: '0'
     }
 },
 //nuevo hook
@@ -59,9 +63,9 @@ Usuarios.prototype.verificarPassword = function(password){
     return bcrypt.compareSync(password, this.password);
 }
 
-// Usuarios.hasMany(Products);
-// Usuarios.hasMany(Ventas);
-// Usuarios.hasMany(Gastos);
+Usuarios.hasMany(Products);
+Usuarios.hasMany(Ventas);
+Usuarios.hasMany(Gastos);
 
 
 //exportamos el modelo

@@ -83,14 +83,18 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//locals
+app.use((req,res,next) =>{
+    res.locals.mensajes = req.flash();
+    res.locals.usuario = {...req.user} || null;
+    next();
+    
+})
 
 
 //rutas
 app.use('/', router())
 
-app.use((req,res,next) =>{
-    res.locals.mensajes = req.flash();
-})
 
 
 //levantar servidor express

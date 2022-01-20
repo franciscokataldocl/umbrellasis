@@ -7,6 +7,8 @@ const { Op } = require("sequelize");
 
 
 exports.productsHome = async (req,res)=>{
+ 
+
 const ventas = await Ventas.sum('precioVenta');
 
 const ventasMes = await Ventas.findAll({

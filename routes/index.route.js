@@ -70,6 +70,11 @@ module.exports = () =>{
     //login-------------------------------------------
     router.get('/login', usuariosController.formIniciarSesion);
     router.post('/login', authController.autenticarUsuario)
+
+    //cerrar sesion-------------------------------------------
+    router.get('/cerrar-sesion', authController.cerrarSesion)
+
+
    
 
     return router;

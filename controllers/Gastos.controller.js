@@ -38,11 +38,13 @@ exports.nuevoGasto = async (req, res) =>{
     const file = req.files;
     const dataGasto = req.body;
     dataGasto.imagen = '';
+    dataGasto.usuarioId =res.locals.usuario.id
 
     
 
     if(file){
         const result = await cloudinary.uploader.upload(req.files.imagen.tempFilePath, {
+            folder: 'gastos',
             public_image:`${uuidv4()}-${Date.now()}${file.imagen.name.split(' ').join('-')}`,
             width:800,
             crop: 'fill'

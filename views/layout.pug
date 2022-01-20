@@ -19,7 +19,6 @@ html(lang="es-CL")
                         img(src="/images/logo.svg", alt="" class="logo") 
                     .menu-wrapper
                         .hamburger-menu
-                
                 .navigation-list
                     ul.list-items.animate__animated.animate__fadeInUp
                         li(class=(nombrePagina == "Inicio" ? "animate-2s active" : "animate-2s"))
@@ -38,7 +37,12 @@ html(lang="es-CL")
                             a(class="animate-2s" href="/gastos")
                                 i(class="animate-2s fas fa-calculator") 
                                     span.animate-2s Gastos
-                                
+                        li.animate-2s.cerrar-sesion
+                            a(class="animate-2s" href="/cerrar-sesion")
+                                i(class="animate-2s fas fa-sign-out-alt") 
+                                    span.animate-2s Cerrar sesión
+                                    
+                               
             block contenido
             script(src="/dist/bundle.js") 
             script(src="js/hamburger-menu.js")

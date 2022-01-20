@@ -41,10 +41,10 @@ button.addEventListener('click', (e) => {
   inputVenta.value = precioVenta;
 
   const imagenEditar = document.getElementById('imgPreviewEditar');
-  imagenEditar.style.backgroundImage =`url('/dashimages/productos/${imagen}')`;
-  console.log(imagen)
+ 
+  imagenEditar.style.backgroundImage =`url('${imagen}')`;
+  
 
-  //console.log(id,nombre,marca,cantidad,stock,precioCosto, precioVenta, imagen)
   
   modalEditarOuter.classList.toggle('show-modal');
 });
