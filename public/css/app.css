@@ -1027,3 +1027,29 @@
     font-size: .9rem;
     color: var(--red);
 }
+
+
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+  .cuenta-container{
+    flex-direction: column;
+  }
+  .image-cuenta {
+    height: 100px;
+    width: 100%;
+  }
+
+
+  .logo-cuenta {
+    width: 100%;
+    max-width: 150px;}
+
+    .cuenta-col{
+      width:100%;
+    }
+    .box-form-cuenta{
+      padding:10%;
+    }
+}
