@@ -904,3 +904,126 @@
  .cerrar-sesion{
   margin-top: 20%!important;
  }
+ .card-container{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+ }
+ .card-usuario{
+  width: 100%;
+  max-width: 400px;
+  box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
+  border-radius: 10px;
+  padding: 3%;
+  margin: 3%;
+ }
+ .card-usuario ul {
+   list-style: none;
+   margin:0;
+   padding:0;
+ }
+ .card-usuario ul li{
+  margin-top:5%;
+  margin-bottom:5%;
+ }
+ .card-usuario ul li h4{
+   color:var(--blue);
+   margin: 0;
+    padding: 0;
+    font-weight: var(--nunito-600);
+    font-size: 1.2rem;
+   
+ }
+ .card-usuario ul li span{
+  color:var(--grey-1);
+  font-weight: var(--nunito-400);
+  font-size: 1.2rem;
+}
+.form-switch{
+  margin-top:20px;
+}
+
+.button-switch {
+  font-size: 1.5em;
+  height: 1.875em;
+  margin-bottom: 0.625em;
+  position: relative;
+  width: 4.5em;
+}
+.button-switch .lbl-off,
+.button-switch .lbl-on {
+  cursor: pointer;
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1em;
+  position: absolute;
+  top: 10px;
+  transition: opacity 0.25s ease-out 0.1s;
+  text-transform: uppercase;
+}
+.button-switch .lbl-off {
+  right: 15px;
+}
+.button-switch .lbl-on {
+  color: #fefefe;
+  opacity: 0;
+  left: 0.4375em;
+}
+.button-switch .switch {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 0;
+  font-size: 1em;
+  left: 0;
+  line-height: 0;
+  outline: none;
+  position: absolute;
+  top: 0;
+  width: 0;
+}
+.button-switch .switch:hover{
+  cursor: pointer;
+}
+.button-switch .switch:before, .button-switch .switch:after {
+  content: "";
+  font-size: 1em;
+  position: absolute;
+}
+.button-switch .switch:before {
+  border-radius: 1.25em;
+  background: var(--grey-2);
+  height: 1.875em;
+  left: -0.25em;
+  top: -0.1875em;
+  transition: background-color 0.25s ease-out 0.1s;
+  width: 4.5em;
+}
+.button-switch .switch:after {
+  box-shadow: 0 0.0625em 0.375em 0 var(--grey-2);
+  border-radius: 50%;
+  background: #fefefe;
+  height: 1.5em;
+  transform: translate(0, 0);
+  transition: transform 0.25s ease-out 0.1s;
+  width: 1.5em;
+}
+.button-switch .switch:checked:after {
+  transform: translate(2.5em, 0);
+}
+.button-switch .switch:checked ~ .lbl-off {
+  opacity: 0;
+}
+.button-switch .switch:checked ~ .lbl-on {
+  opacity: 1;
+}
+.button-switch .switch:checked:before {
+  background: var(--green);
+}
+
+.small-text{
+  margin: 0;
+    font-size: .9rem;
+    color: var(--red);
+}

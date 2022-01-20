@@ -42,7 +42,15 @@ const Usuarios = db.define('usuarios', {
     },
     activo:{
         type: Sequelize.INTEGER,
-        defaultValue: '0'
+        //si activo = 1 usuario puede navegar en la webapp
+        //caso contrario no puede
+        defaultValue: 0
+    },
+    role:{
+        type: Sequelize.STRING,
+        //si role guest, no puede eliminar ni desactivar otros usuarios
+        //si role admin puede desactivar usuarios y eliminar productos
+        defaultValue: 'guest'
     }
 },
 //nuevo hook
@@ -64,6 +72,7 @@ Usuarios.prototype.verificarPassword = function(password){
 }
 
 Usuarios.hasMany(Products);
+Products.belongsTo(Usuarios);
 Usuarios.hasMany(Ventas);
 Usuarios.hasMany(Gastos);
 

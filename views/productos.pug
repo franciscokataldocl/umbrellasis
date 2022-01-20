@@ -26,6 +26,7 @@ block contenido
                             th PRECIO COSTO
                             th PRECIO VENTA
                             th IMÁGEN
+                            th CREADO POR
                             th ACCIÓN
                     tbody
                         if(productos.length)
@@ -44,6 +45,7 @@ block contenido
                                         .table-image-circle
                                             a(href=`${producto.imagen}` data-fslightbox )
                                                 img(src=`${producto.imagen}`, alt="") 
+                                    td #{producto.usuario.nombre}
                                     td
                                         .table-button
                                             span(data-nombre=producto.nombre data-marca=producto.marca data-cantidad=producto.cantidad data-stock=producto.stock data-costo=producto.precioCosto data-venta=producto.precioVenta data-imagen=producto.imagen data-id=producto.id).btn.btn-yellow.open-editar.far.fa-edit

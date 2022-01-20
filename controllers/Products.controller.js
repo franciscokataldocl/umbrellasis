@@ -1,13 +1,14 @@
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 
-const cloudinary = require('../helpers/imageUpload')
+const cloudinary = require('../helpers/imageUpload');
 
 
 
 
 //modelo productos
 const Products = require('../models/Products.model');
+const Usuarios = require('../models/Usuarios.model');
 
 
 //al entrar en /productos
@@ -16,12 +17,15 @@ exports.products = async (req, res) => {
     const productos = await Products.findAll({
         order: [
             ['created_at', 'DESC']
-        ]
+        ],
+        include: Usuarios
     });
+    console.log(productos);
     //pasar ese resultado a la vista
     res.render('productos', {
         nombrePagina: 'Productos',
-        productos
+        productos,
+        
     });
 }
 

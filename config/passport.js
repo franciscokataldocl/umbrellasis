@@ -28,6 +28,11 @@ passport.use(
                         message: 'password incorrecto'
                     })
                 }
+                if(usuario.activo === 0){
+                    return done(null, false,{
+                        message: 'Usuario no autorizado'
+                    })
+                }
 
                 //caso contrario el email existe, y el password es correcto
                 return done(null, usuario)

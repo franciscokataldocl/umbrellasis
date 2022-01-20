@@ -1,0 +1,44 @@
+extends layout
+
+block contenido
+    .contenido.animate__animated.animate__fadeInUp
+        .wrapper-contenido  
+            h1.title-contenido=nombrePagina
+            .card-container
+                if usuarios 
+                        each usuario in usuarios
+                            .card-usuario
+                                ul
+                                    li(class="")
+                                        h4 Nombre
+                                        span=usuario.nombre
+                                    li(class="")
+                                        h4 Email
+                                        span=usuario.email
+                                    li(class="")
+                                        h4 Role
+                                        span=usuario.role
+                                    li(class="")
+                                        h4 Activo
+                                        p.small-text Un usuario desactivado no podra ingresar en la aplicación
+                                        form(class="form-switch")
+                                            .button-switch
+                                                if(usuario.activo === 1)
+                                                    input(type="checkbox" id="switch-orange" class="switch"  checked data-active=usuario.activo data-email=usuario.email)
+                                                    label(for="switch-grey" class="lbl-off") No
+                                                    label(for="switch-green" class="lbl-on") Si
+                                                else
+                                                    input(type="checkbox" id="switch-orange" class="switch" data-active=usuario.activo data-email=usuario.email)
+                                                    label(for="switch-grey" class="lbl-off") No
+                                                    label(for="switch-green" class="lbl-on") Si
+                                            
+                                                
+                                            
+
+                                        
+
+                                    
+                                    
+                                
+                
+                        

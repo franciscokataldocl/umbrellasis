@@ -61,6 +61,7 @@ app.use(fileupload({
 
 //habilitar bodyParser
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json())
 
 
 //habilitar expressValidator

@@ -37,6 +37,12 @@ html(lang="es-CL")
                             a(class="animate-2s" href="/gastos")
                                 i(class="animate-2s fas fa-calculator") 
                                     span.animate-2s Gastos
+                        if(role === 'admin')            
+                            li(class=(nombrePagina == "Usuarios" ? "animate-2s active" : "animate-2s"))
+                                a(class="animate-2s" href="/usuarios")
+                                    i(class="animate-2s fas fa-users") 
+                                        span.animate-2s Usuarios
+
                         li.animate-2s.cerrar-sesion
                             a(class="animate-2s" href="/cerrar-sesion")
                                 i(class="animate-2s fas fa-sign-out-alt") 

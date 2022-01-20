@@ -47,9 +47,66 @@ exports.crearCuenta =  async (req,res) =>{
 
 exports.formIniciarSesion = (req,res) =>{
 
+//console.log(res.locals.mensajes);
+const {error} = res.locals.mensajes
     res.render('login',{
         nombrePagina: 'Iniciar Sesión',
-        errores: req.flash().error
+        errores: error
     });
 }
 
+
+
+exports.getUsers = async (req,res) =>{
+
+    const usuarios = await Usuarios.findAll({
+        where:{role:'guest'},
+        order: [
+            ['nombre', 'DESC']
+        ]
+    });
+    
+
+    res.render('usuarios',{
+        nombrePagina: 'Usuarios',
+        usuarios,
+    });
+}
+
+exports.activarUsuario = async (req,res) =>{
+    const {email, activo} = req.body;
+    
+    const usuario = await Usuarios.findOne({
+        where:{
+            email:email
+        }
+    })
+
+    if(!usuario){
+       return res.redirect('back')
+    }
+
+    if(activo == 0){
+        await usuario.update({
+            activo: 1
+        });
+        return res.send(usuario)
+    }
+    if(activo == 1){
+        await usuario.update({
+            activo: 0
+        });
+        return res.send(usuario)
+    }
+
+}
+
+//verificar si usuario logueado es administrador para proteger rutas
+exports.isRole = (req, res, next) =>{
+    const role = res.locals.usuario.role;
+
+    if(role === 'guest'){
+        return res.redirect('/')
+    }
+    next();
+}

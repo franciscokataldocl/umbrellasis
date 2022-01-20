@@ -3,6 +3,7 @@ const { Sequelize } = require('sequelize');
 //IMPORTANTE importar la configuracion de la bbdd
 const db = require('../config/db');
 
+
 //creamos la tabla en la bbdd definiendo sus campos
 
 const Products = db.define('productos', {
@@ -82,7 +83,6 @@ const Products = db.define('productos', {
   }
 
 })
-
 
 
 //exportamos el modelo
