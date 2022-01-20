@@ -1052,4 +1052,14 @@
     .box-form-cuenta{
       padding:10%;
     }
+    .button-switch .lbl-off, .button-switch .lbl-on{
+      top: -7px;
+    }
+    .card-container {
+  
+      flex-direction: column;
+  }
+  .card-usuario {
+    padding: 10%;
+}
 }
