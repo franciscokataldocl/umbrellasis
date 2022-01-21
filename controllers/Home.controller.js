@@ -8,6 +8,7 @@ const { Op } = require("sequelize");
 
 exports.productsHome = async (req,res)=>{
  const role = res.locals.usuario.role;
+ const username = res.locals.usuario.nombre;
 
 const ventas = await Ventas.sum('precioVenta');
 
@@ -44,6 +45,7 @@ const gastosMes = await Gastos.sum('montoGasto');
         ventas,
         ventasMes,
         gastosMes,
-        role
+        role,
+        username
     });
 }

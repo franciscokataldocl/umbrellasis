@@ -15,6 +15,7 @@ const Usuarios= require('../models/Usuarios.model');
 
 exports.gastos = async (req,res)=>{
     const role = res.locals.usuario.role;
+    const username = res.locals.usuario.nombre;
 
     const gastos = await Gastos.findAll({
         order: [
@@ -28,7 +29,8 @@ exports.gastos = async (req,res)=>{
     res.render('gastos', {
         nombrePagina: 'Gastos',
         gastos,
-        role
+        role,
+        username
     });
 }
 
