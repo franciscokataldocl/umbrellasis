@@ -14,7 +14,7 @@ exports.crearCuenta =  async (req,res) =>{
    //leer los datos
     const {email,nombre, password} = req.body;
 
-    console.log(req.body);
+    //console.log(req.body);
     try {
         //crear usuario
         await  Usuarios.create({

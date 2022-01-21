@@ -67,7 +67,8 @@ const Ventas = db.define('ventas', {
 
 });
 
-
+Ventas.belongsTo(Products);
+Products.hasMany(Ventas);
 
 
 //exportamos el modelo

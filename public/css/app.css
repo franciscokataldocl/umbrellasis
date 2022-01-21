@@ -1028,7 +1028,21 @@
     color: var(--red);
 }
 
+.welcome{
+  position: absolute;
+    top: 3%;
+    right: 5%;
+    font-weight: var(--nunito-400);
+    color:var(--grey-2);
+    font-size:1.2rem;
+}
+.welcome p{
+  margin: 0;
+    padding: 0;
+    display: inline;
+    color:var(--green)
 
+}
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px) {
@@ -1062,4 +1076,12 @@
   .card-usuario {
     padding: 10%;
 }
+
+.welcome {
+  bottom: 3%;
+  right: auto;
+ top:auto;
+  z-index: 12;
+}
+
 }

@@ -3,7 +3,9 @@ const { Sequelize } = require('sequelize');
 //IMPORTANTE importar la configuracion de la bbdd
 const db = require('../config/db');
 
-const moment = require('moment')
+const moment = require('moment');
+
+
 
 
 const Gastos = db.define('gastos', {
@@ -62,7 +64,9 @@ const Gastos = db.define('gastos', {
     allowNull: false
   }
 
-})
+});
+
+
 
 //exportamos el modelo
 module.exports = Gastos;

@@ -43,6 +43,7 @@ block contenido
                             th CANT. VENDIDA
                             th VALOR VENTA
                             th FECHA VENTA
+                            th CREADA POR
                             th IMAGEN
                     
                     tbody
@@ -53,6 +54,7 @@ block contenido
                                     td #{venta.cantidad} unidades
                                     td $#{venta.precioVenta}
                                     td=venta.fechaVenta
+                                    TD #{venta.usuario.nombre}
                                     td
                                         .table-image-circle
                                             a(href=`${venta.imagen}` data-fslightbox )

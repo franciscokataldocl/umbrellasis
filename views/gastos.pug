@@ -43,6 +43,7 @@ block contenido
                             th MONTO GASTO
                             th FECHA GASTO
                             th FECHA INGRESO
+                            th CREADO POR
                             th IMÁGEN
                     
                     tbody
@@ -53,6 +54,7 @@ block contenido
                                         td $#{gasto.montoGasto}
                                         td #{gasto.fechaGasto}
                                         td #{gasto.created_at}
+                                        td #{gasto.usuario.nombre}
                                         td 
                                             .table-image-circle
                                                 a(href=`${gasto.imagen}` data-fslightbox )

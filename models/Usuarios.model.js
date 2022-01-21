@@ -73,8 +73,13 @@ Usuarios.prototype.verificarPassword = function(password){
 
 Usuarios.hasMany(Products);
 Products.belongsTo(Usuarios);
+
 Usuarios.hasMany(Ventas);
+Ventas.belongsTo(Usuarios);
+
+
 Usuarios.hasMany(Gastos);
+Gastos.belongsTo(Usuarios)
 
 
 //exportamos el modelo

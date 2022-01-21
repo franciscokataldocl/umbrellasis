@@ -9,22 +9,32 @@ const cloudinary = require('../helpers/imageUpload')
 
 //modelo productos
 const Gastos= require('../models/Gastos.model');
+const Usuarios= require('../models/Usuarios.model');
 
 
 
 exports.gastos = async (req,res)=>{
+    const role = res.locals.usuario.role;
 
     const gastos = await Gastos.findAll({
         order: [
             ['created_at', 'DESC']
-        ]
+        ],
+        include: Usuarios
     });
+
+    //console.log(gastos);
 
     res.render('gastos', {
         nombrePagina: 'Gastos',
-        gastos
+        gastos,
+        role
     });
 }
+
+
+
+
 
 exports.nuevoGasto = async (req, res) =>{
 
@@ -32,7 +42,9 @@ exports.nuevoGasto = async (req, res) =>{
         order: [
             ['created_at', 'DESC']
         ]
+        
     });
+    
 
     //leer imagen
     const file = req.files;
@@ -49,7 +61,7 @@ exports.nuevoGasto = async (req, res) =>{
             width:800,
             crop: 'fill'
         });
-        console.log(result.url)
+        //console.log(result.url)
         dataGasto.imagen = result.url;
        
    }

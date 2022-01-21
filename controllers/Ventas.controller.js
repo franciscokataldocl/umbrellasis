@@ -1,8 +1,10 @@
 
 const Ventas = require('../models/Ventas.model');
 const Products = require('../models/Products.model');
+const Usuarios = require('../models/Usuarios.model');
 
 exports.ventas = async (req,res)=>{
+    const role = res.locals.usuario.role;
     const ventas = await Ventas.findAll({
         order: [
             ['created_at', 'DESC']
@@ -11,22 +13,19 @@ exports.ventas = async (req,res)=>{
             {
                 model: Products, as: Products.productos
             }
-        ]
+        ],
+        include: Usuarios
     });
 
  
 
-    const productos = await Products.findAll({
-        order: [
-            ['nombre', 'ASC']
-        ]
-    })
-
+   
 
     res.render('ventas', {
         nombrePagina: 'Ventas',
         ventas,
-        productos
+        role
+      
     });
 }
 
@@ -81,7 +80,7 @@ exports.nuevaVenta = async (req,res) =>{
         const precioVenta = item.precioVenta * cantidad;
 
        const imagen = item.imagen;
-       console.log(imagen)
+       //console.log(imagen)
         
         const fechaFormat = fechaVenta.split('/').join('-');
         fechaVenta = fechaFormat;

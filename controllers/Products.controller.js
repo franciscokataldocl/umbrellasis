@@ -13,6 +13,7 @@ const Usuarios = require('../models/Usuarios.model');
 
 //al entrar en /productos
 exports.products = async (req, res) => {
+    const role = res.locals.usuario.role;
     //traer todos los productos de la bbdd a traves del modelo Products
     const productos = await Products.findAll({
         order: [
@@ -20,11 +21,11 @@ exports.products = async (req, res) => {
         ],
         include: Usuarios
     });
-    console.log(productos);
     //pasar ese resultado a la vista
     res.render('productos', {
         nombrePagina: 'Productos',
         productos,
+        role
         
     });
 }
