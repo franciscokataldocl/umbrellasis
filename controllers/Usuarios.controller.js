@@ -26,6 +26,7 @@ exports.crearCuenta =  async (req,res) =>{
 
     } catch (error) {
         //generar errores
+        console.log(error.errors);
         req.flash('error', error.errors.map(error => error.message))
 
 
