@@ -6,6 +6,7 @@ const Usuarios = require('../models/Usuarios.model');
 exports.ventas = async (req,res)=>{
     const role = res.locals.usuario.role;
     const username = res.locals.usuario.nombre;
+
     const ventas = await Ventas.findAll({
         order: [
             ['created_at', 'DESC']
@@ -18,6 +19,12 @@ exports.ventas = async (req,res)=>{
         include: Usuarios
     });
 
+    const productos = await Products.findAll({
+        order: [
+            ['nombre', 'ASC']
+        ]
+    });
+
  
 
    
@@ -26,7 +33,8 @@ exports.ventas = async (req,res)=>{
         nombrePagina: 'Ventas',
         ventas,
         role,
-        username
+        username,
+        productos
       
     });
 }
